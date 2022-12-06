@@ -43,6 +43,8 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new FontLoader();
 
+
+
 loader.load('Roboto Black_Italic.json', function( font ){
   const name = new TextGeometry( "error22", {
     font: font,
