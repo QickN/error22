@@ -1,10 +1,12 @@
 
+//Imports 
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
 import { OrbitControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js'
 import { FontLoader } from 'https://unpkg.com/three@0.141.0/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'https://unpkg.com/three@0.141.0/examples/jsm/geometries/TextGeometry.js'
-import { FBXLoader } from 'https://unpkg.com/three@0.141.0/examples/jsm/loaders/FBXLoader.js'
 
+
+//Setup camera and scene with the size of the window
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, .1, 1000);
@@ -30,10 +32,7 @@ scene.add(donutMesh)
 const pointLight = new THREE.PointLight(0xffffff)
 pointLight.position.set(-20,-20,40)
 
-
 scene.add(pointLight)
-
-
 
 const gridHelper = new THREE.GridHelper(200,50);
 scene.add(gridHelper)
@@ -43,7 +42,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 const loader = new FontLoader();
 
 loader.load('Roboto Black_Italic.json', function( font ){
-  const name = new TextGeometry( "Nicholas Quam", {
+  const name = new TextGeometry( "error22", {
     font: font,
     size: 3,
     height: 5,
@@ -53,15 +52,6 @@ loader.load('Roboto Black_Italic.json', function( font ){
   nameMesh.position.set(-15,5,10)
   scene.add(nameMesh)
 });
-
-const loader3d = new FBXLoader();
-
-loader3d.load ('sumodel.fbx', (object)=> {
-  object.scale.set(.1,.1,.1)
-  scene.add(object)
-})
-
-
 
 function animate() {
   requestAnimationFrame(animate)
