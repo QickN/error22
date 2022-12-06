@@ -9,7 +9,7 @@ import { TextGeometry } from 'https://unpkg.com/three@0.141.0/examples/jsm/geome
 //Setup camera and scene with the size of the window
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, .1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, .1, 1000);
 
 
 const renderer = new THREE.WebGLRenderer({
@@ -26,25 +26,33 @@ camera.position.setY(10)
 renderer.render(scene, camera);
 
 const donut = new THREE.TorusGeometry(10,3,10,90)
+
 const donutMat = new THREE.MeshBasicMaterial( {color: 0xFFFFF, wireframe: true})
+
 const donutMesh = new THREE.Mesh(donut, donutMat)
 
 scene.add(donutMesh)
 
 const pointLight = new THREE.PointLight(white)
+
 pointLight.position.set(-10,-20,40)
 
 scene.add(pointLight)
 
-const gridHelper = new THREE.GridHelper(400,100);
-scene.add(gridHelper)
+//const gridHelper = new THREE.GridHelper(400,100);
+//scene.add(gridHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
+controls.rotateSpeed = 5.0;
+
+controls.enableZoom = false;
+
+controls.enableRotate = false;
+
 const loader = new FontLoader();
 
-
-
+//Add error22 text 
 loader.load('Roboto Black_Italic.json', function( font ){
   const name = new TextGeometry( "error22", {
     font: font,
@@ -57,6 +65,7 @@ loader.load('Roboto Black_Italic.json', function( font ){
   scene.add(nameMesh)
 });
 
+
 function animate() {
   requestAnimationFrame(animate)
 
@@ -65,6 +74,8 @@ function animate() {
   donutMesh.rotation.x += 0.005
   donutMesh.rotation.y += .001
   donutMesh.rotation.z += .001
+
+  
 
   controls.update()
   renderer.render(scene,camera)
