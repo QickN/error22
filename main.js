@@ -16,6 +16,8 @@ const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg')
 })
 
+const white = new THREE.Color("rgb(255,255,255)")
+
 renderer.setPixelRatio( window.devicePixelRatio )
 renderer.setSize( window.innerWidth, window.innerHeight)
 camera.position.setZ(30);
@@ -24,17 +26,17 @@ camera.position.setY(10)
 renderer.render(scene, camera);
 
 const donut = new THREE.TorusGeometry(10,3,10,90)
-const donutMat = new THREE.MeshBasicMaterial( {color: 0xFF6347, wireframe: true})
+const donutMat = new THREE.MeshBasicMaterial( {color: 0xFFFFF, wireframe: true})
 const donutMesh = new THREE.Mesh(donut, donutMat)
 
 scene.add(donutMesh)
 
-const pointLight = new THREE.PointLight(0xffffff)
-pointLight.position.set(-20,-20,40)
+const pointLight = new THREE.PointLight(white)
+pointLight.position.set(-10,-20,40)
 
 scene.add(pointLight)
 
-const gridHelper = new THREE.GridHelper(200,50);
+const gridHelper = new THREE.GridHelper(400,100);
 scene.add(gridHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -45,18 +47,19 @@ loader.load('Roboto Black_Italic.json', function( font ){
   const name = new TextGeometry( "error22", {
     font: font,
     size: 3,
-    height: 5,
+    height: 2,
   });
-  const nameMat = new THREE.MeshStandardMaterial({color: 0xFF6347})
+  const nameMat = new THREE.MeshStandardMaterial({color: white})
   const nameMesh = new THREE.Mesh(name, nameMat)
-  nameMesh.position.set(-15,5,10)
+  nameMesh.position.set(-7.5,5,10)
   scene.add(nameMesh)
 });
 
 function animate() {
   requestAnimationFrame(animate)
 
-  donutMesh.position.y = 10
+  donutMesh.position.y = 5
+  donutMesh.position.z = -5
   donutMesh.rotation.x += 0.005
   donutMesh.rotation.y += .001
   donutMesh.rotation.z += .001
