@@ -22,6 +22,8 @@ camera.position.setY(10)
 
 renderer.render(scene, camera);
 
+//Donut Mesh
+
 const donut = new THREE.TorusGeometry(10,3,10,90)
 
 const donutMat = new THREE.MeshBasicMaterial( {color: 0xFFFFF, wireframe: true} )
@@ -46,6 +48,8 @@ controls.rotateSpeed = 5.0;
 controls.enableZoom = false;
 
 controls.enableRotate = false;
+
+controls.enablePan = false;
 
 const loader = new FontLoader();
 
