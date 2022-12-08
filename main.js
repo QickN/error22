@@ -14,6 +14,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 
 const white = new THREE.Color( "rgb(255,255,255)" )
+const red = new THREE.Color( "rgb(255,10,10)" )
 
 renderer.setPixelRatio( window.devicePixelRatio )
 renderer.setSize( window.innerWidth, window.innerHeight)
@@ -21,6 +22,8 @@ camera.position.setZ(30);
 camera.position.setY(10)
 
 renderer.render(scene, camera);
+
+let count = 0;
 
 //Donut Mesh
 
@@ -66,6 +69,19 @@ loader.load('Roboto Black_Italic.json', function( font ){
   scene.add(nameMesh)
 });
 
+//Add Visitor text
+loader.load('Roboto Black_Italic.json', function( font ){
+  const name = new TextGeometry( "Visitors | " + count , {
+    font: font,
+    size: 1,
+    height: 2,
+  });
+  const nameMat = new THREE.MeshStandardMaterial({color: red})
+  const nameMesh = new THREE.Mesh(name, nameMat)
+  nameMesh.position.set(-7.5,3,10)
+  scene.add(nameMesh)
+});
+
 
 function animate() {
   requestAnimationFrame(animate)
@@ -90,3 +106,13 @@ function onWindowResize() {
 }
 
 animate()
+
+
+
+function vistorCount(){
+  count ++;
+
+  document.getElementById("visitor-count").innerHTML = count
+}
+
+window.onLoad = vistorCount;
