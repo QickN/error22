@@ -15,6 +15,7 @@ const renderer = new THREE.WebGLRenderer({
 
 const white = new THREE.Color( "rgb(255,255,255)" )
 const red = new THREE.Color( "rgb(255,10,10)" )
+const green = new THREE.Color( "rgb(10,255,10)" )
 
 renderer.setPixelRatio( window.devicePixelRatio )
 renderer.setSize( window.innerWidth, window.innerHeight)
@@ -28,12 +29,20 @@ let count = 0;
 //Donut Mesh
 
 const donut = new THREE.TorusGeometry(10,3,10,90)
+const donut2 = new THREE.TorusGeometry(10,3,10,95)
+const donut3 = new THREE.TorusGeometry(10,3,10,100)
 
 const donutMat = new THREE.MeshBasicMaterial( {color: 0xFFFFF, wireframe: true} )
+const donutMat2 = new THREE.MeshBasicMaterial( {color: red, wireframe: true} )
+const donutMat3 = new THREE.MeshBasicMaterial( {color: green, wireframe: true} )
 
 const donutMesh = new THREE.Mesh(donut, donutMat)
+const donutMesh2 = new THREE.Mesh(donut2, donutMat2)
+const donutMesh3 = new THREE.Mesh(donut3, donutMat3)
 
 scene.add(donutMesh)
+scene.add(donutMesh2)
+scene.add(donutMesh3)
 
 const pointLight = new THREE.PointLight(white)
 
@@ -72,6 +81,18 @@ function animate() {
   donutMesh.rotation.x += 0.005
   donutMesh.rotation.y += .001
   donutMesh.rotation.z += .001
+
+  donutMesh2.position.y = 5
+  donutMesh2.position.z = -5
+  donutMesh2.rotation.x += 0.006
+  donutMesh2.rotation.y += .001
+  donutMesh2.rotation.z += .001
+
+  donutMesh3.position.y = 5
+  donutMesh3.position.z = -5
+  donutMesh3.rotation.x += 0.007
+  donutMesh3.rotation.y += .001
+  donutMesh3.rotation.z += .001
 
   controls.update()
   renderer.render(scene,camera)
