@@ -83,6 +83,7 @@ loader.load('Roboto Black_Italic.json', function( font ){
 });
 
 
+// Animates the donut then renders the donut 
 function animate() {
   requestAnimationFrame(animate)
 
@@ -91,8 +92,6 @@ function animate() {
   donutMesh.rotation.x += 0.005
   donutMesh.rotation.y += .001
   donutMesh.rotation.z += .001
-
-  
 
   controls.update()
   renderer.render(scene,camera)
@@ -107,12 +106,10 @@ function onWindowResize() {
 
 animate()
 
-
-
 function vistorCount(){
   count ++;
 
   document.getElementById("visitor-count").innerHTML = count
 }
 
-window.onLoad = vistorCount;
+window.onLoad = vistorCount();
