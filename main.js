@@ -48,7 +48,6 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 controls.rotateSpeed = 5.0;
 
-
 const loader = new FontLoader();
 
 //Add error22 text 
@@ -63,20 +62,6 @@ loader.load('Roboto Black_Italic.json', function( font ){
   nameMesh.position.set(-7.5,5,10)
   scene.add(nameMesh)
 });
-
-//Add Visitor text
-loader.load('Roboto Black_Italic.json', function( font ){
-  const name = new TextGeometry( "Visitors | " + count , {
-    font: font,
-    size: 1,
-    height: 2,
-  });
-  const nameMat = new THREE.MeshStandardMaterial({color: red})
-  const nameMesh = new THREE.Mesh(name, nameMat)
-  nameMesh.position.set(-7.5,3,10)
-  scene.add(nameMesh)
-});
-
 
 // Animates the donut then renders the donut 
 function animate() {
