@@ -48,11 +48,6 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 controls.rotateSpeed = 5.0;
 
-controls.enableZoom = false;
-
-controls.enableRotate = false;
-
-controls.enablePan = false;
 
 const loader = new FontLoader();
 
