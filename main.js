@@ -16,6 +16,7 @@ const renderer = new THREE.WebGLRenderer({
 const white = new THREE.Color( "rgb(255,255,255)" )
 const red = new THREE.Color( "rgb(255,10,10)" )
 const green = new THREE.Color( "rgb(10,255,10)" )
+const purple = new THREE.Color( "rgb(60,0,80)" )
 
 renderer.setPixelRatio( window.devicePixelRatio )
 renderer.setSize( window.innerWidth, window.innerHeight)
@@ -31,18 +32,19 @@ let count = 0;
 const donut = new THREE.TorusGeometry(10,3,10,90)
 const donut2 = new THREE.TorusGeometry(10,3,10,95)
 const donut3 = new THREE.TorusGeometry(10,3,10,100)
+const donut4 = new THREE.TorusGeometry(10,3,10,105)
 
 const donutMat = new THREE.MeshBasicMaterial( {color: 0xFFFFF, wireframe: true} )
 const donutMat2 = new THREE.MeshBasicMaterial( {color: red, wireframe: true} )
 const donutMat3 = new THREE.MeshBasicMaterial( {color: green, wireframe: true} )
+const donutMat4 = new THREE.MeshBasicMaterial( {color: purple, wireframe: true} )
 
 const donutMesh = new THREE.Mesh(donut, donutMat)
 const donutMesh2 = new THREE.Mesh(donut2, donutMat2)
 const donutMesh3 = new THREE.Mesh(donut3, donutMat3)
+const donutMesh4 = new THREE.Mesh(donut4, donutMat4)
 
-scene.add(donutMesh)
-scene.add(donutMesh2)
-scene.add(donutMesh3)
+scene.add(donutMesh, donutMesh2, donutMesh3, donutMesh4)
 
 const pointLight = new THREE.PointLight(white)
 
@@ -50,8 +52,8 @@ pointLight.position.set(-10,-20,40)
 
 scene.add(pointLight)
 
-//const gridHelper = new THREE.GridHelper(400,100);
-//scene.add(gridHelper)
+const gridHelper = new THREE.GridHelper(400,100);
+scene.add(gridHelper)
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -73,7 +75,7 @@ loader.load('Roboto Black_Italic.json', function( font ){
 });
 
 // Animates the donut then renders the donut 
-function animate() {
+function animate () {
   requestAnimationFrame(animate)
 
   donutMesh.position.y = 5
@@ -94,6 +96,12 @@ function animate() {
   donutMesh3.rotation.y += .001
   donutMesh3.rotation.z += .001
 
+  donutMesh4.position.y = 5
+  donutMesh4.position.z = -5
+  donutMesh4.rotation.x += 0.008
+  donutMesh4.rotation.y += .001
+  donutMesh4.rotation.z += .001
+
   controls.update()
   renderer.render(scene,camera)
 }
@@ -113,4 +121,4 @@ function vistorCount(){
   document.getElementById("visitor-count").innerHTML = count
 }
 
-window.onLoad = vistorCount();
+
